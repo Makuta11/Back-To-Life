@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75884d377d9aa4e809888c2c3438c8a1, type: 3}
+  m_Name: CopperBlockData
+  m_EditorClassIdentifier: 
+  blockName: Copper Block
+  blockTile: {fileID: 11400000, guid: 2eaa7242ed07841eeb522f3812693ec8, type: 2}
+  miningTime: 1
+  dropPrefab: {fileID: 6131221070387171347, guid: 741c8ff136a3d434bb3ad3c72257b017, type: 3}
+  minDropAmount: 2
+  maxDropAmount: 2
+  highlightColor: {r: 1, g: 1, b: 1, a: 0.5}

@@ -1,0 +1,100 @@
+# =============== #
+# Unity Generated #
+# =============== #
+
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Mm]emoryCaptures/
+[Mm]emoryCaptures/
+UserSettings/
+
+# Unity Asset Store tools
+Assets/AssetStoreTools*
+
+# Crash and debug logs
+sysinfo.txt
+*.stacktrace
+
+# =============== #
+# VS Code Files   #
+# =============== #
+
+.vscode/
+.vscode/settings.json
+.vscode/tasks.json
+.vscode/launch.json
+
+# Rider files
+.idea/
+
+# =============== #
+# OS Specific     #
+# =============== #
+
+.DS_Store
+Thumbs.db
+
+# =============== #
+# Git Settings    #
+# =============== #
+
+*.pidb
+*.suo
+*.user
+*.userprefs
+*.unityproj
+*.booproj
+*.svd
+
+# Auto-generated VS/IDE stuff
+*.csproj
+*.pidb
+*.sln
+*.suo
+
+# Unity Cache and Metadata
+*.unitypackage
+*.apk
+*.aab
+
+# JetBrains Rider
+.idea/
+*.sln.iml
+
+# Exclude builds if stored here
+Builds/
+Build/
+
+# =============== #
+# Logs & Coverage #
+# =============== #
+
+*.log
+*.bak
+*.tmp
+*.tmp.*
+
+# Crash dumps
+*.dmp
+
+# Coverage reports
+CoverageResults/
+
+# =============== #
+# Git Large File Support (Optional) #
+# =============== #
+
+# If using Git LFS, optionally track these:
+# *.psd
+# *.fbx
+# *.png
+# *.jpg
+# *.tga
+# *.mp4
+# *.wav
+# *.ogg
+# *.mp3
