@@ -2564,9 +2564,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 956a9ba6c717d440cadc5dec376eeb4e, type: 2}
   miningRange: 2
   playerTransform: {fileID: 1576903030}
+  isometricHorizontalOffset: 0
+  isometricVerticalOffset: -2
   mouseDetectionOffset: {x: 0, y: 0}
   miningProgressPrefab: {fileID: 0}
-  showDebugInfo: 0
+  showDebugInfo: 1
 --- !u!4 &475455153
 Transform:
   m_ObjectHideFlags: 0
@@ -4026,7 +4028,7 @@ TilemapCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_CompositeOperation: 1
+  m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0.125}
   m_MaximumTileChangeCount: 1000
@@ -4070,35 +4072,9 @@ CompositeCollider2D:
   m_GeometryType: 0
   m_GenerationType: 0
   m_EdgeRadius: 0
-  m_ColliderPaths:
-  - m_Collider: {fileID: 1781796415}
-    m_ColliderPaths:
-    - - X: 55000000
-        Y: 1250000
-      - X: 0
-        Y: 28750000
-      - X: -55000000
-        Y: 1250000
-      - X: 0
-        Y: -26250000
-    - - X: -35000000
-        Y: 1250000
-      - X: 0
-        Y: 18750000
-      - X: 35000000
-        Y: 1250000
-      - X: 0
-        Y: -16250000
+  m_ColliderPaths: []
   m_CompositePaths:
-    m_Paths:
-    - - {x: -0.0000118, y: -2.6249943}
-      - {x: 5.4999385, y: 0.1250309}
-      - {x: -0.0000118, y: 2.8749943}
-      - {x: -5.4999385, y: 0.1249691}
-    - - {x: 0.0000118, y: -1.6249942}
-      - {x: -3.4999385, y: 0.1250309}
-      - {x: 0.0000118, y: 1.874994}
-      - {x: 3.4999385, y: 0.1249691}
+    m_Paths: []
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
   m_UseDelaunayMesh: 0
