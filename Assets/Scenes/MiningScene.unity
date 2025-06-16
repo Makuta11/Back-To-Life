@@ -2564,11 +2564,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 956a9ba6c717d440cadc5dec376eeb4e, type: 2}
   miningRange: 2
   playerTransform: {fileID: 1576903030}
-  isometricHorizontalOffset: 0
-  isometricVerticalOffset: -2
-  mouseDetectionOffset: {x: 0, y: 0}
+  isometricHorizontalOffset: -0.5
+  isometricVerticalOffset: 0
   miningProgressPrefab: {fileID: 0}
-  showDebugInfo: 1
 --- !u!4 &475455153
 Transform:
   m_ObjectHideFlags: 0
