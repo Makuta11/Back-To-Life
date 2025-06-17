@@ -266,7 +266,21 @@ public class MiningManager : MonoBehaviour
     private void HandleMining()
     {
         if (Mouse.current == null) return;
+        
+        // Start mining if: mouse pressed OR (mouse held AND hovering new block AND not currently mining)
+        bool shouldStartMining = false;
+        
         if (Mouse.current.leftButton.wasPressedThisFrame && isHighlighting)
+        {
+            shouldStartMining = true;
+        }
+        else if (Mouse.current.leftButton.isPressed && isHighlighting && miningCoroutine == null)
+        {
+            // Mouse is held down, we're highlighting a block, and we're not currently mining
+            shouldStartMining = true;
+        }
+        
+        if (shouldStartMining)
         {
             TileBase tile = mineableTilemap.GetTile(currentHoveredTile);
             if (tile != null && tileToBlockData.TryGetValue(tile, out BlockData blockData))
@@ -280,6 +294,7 @@ public class MiningManager : MonoBehaviour
                 }
             }
         }
+        
         if (Mouse.current.leftButton.wasReleasedThisFrame)
         {
             if (miningCoroutine != null)
@@ -303,6 +318,7 @@ public class MiningManager : MonoBehaviour
             if (!IsBlockMineable(tilePos) || currentHoveredTile != tilePos || 
                 !Mouse.current.leftButton.isPressed)
             {
+                miningCoroutine = null;
                 yield break;
             }
             yield return null;
@@ -314,6 +330,9 @@ public class MiningManager : MonoBehaviour
         // Clear cache since we modified the tilemap
         mineableCache.Clear();
         visibilityCache.Clear();
+        
+        // Clear the coroutine reference so we can start mining a new block
+        miningCoroutine = null;
     }
 
     // Spawns block drops at the correct position
