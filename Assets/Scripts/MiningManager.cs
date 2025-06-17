@@ -126,32 +126,47 @@ public class MiningManager : MonoBehaviour
         Vector2 mousePos = Mouse.current.position.ReadValue();
         Vector3 mouseWorldPos = mainCamera.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, 0));
         mouseWorldPos.z = 0;
+        
         Vector3Int? hoveredTile = GetTopmostTileAtPosition(mouseWorldPos);
+        
+        // Determine what tile should be highlighted (if any)
+        Vector3Int? tileToHighlight = null;
+        
         if (hoveredTile.HasValue)
         {
             Vector3Int tilePos = hoveredTile.Value;
-            if (tilePos != currentHoveredTile)
+            currentHoveredTile = tilePos;
+            
+            TileBase tile = mineableTilemap.GetTile(tilePos);
+            if (tile != null && tileToBlockData.ContainsKey(tile))
             {
-                currentHoveredTile = tilePos;
-                if (isHighlighting)
-                    RemoveHighlight();
-                TileBase tile = mineableTilemap.GetTile(tilePos);
-                if (tile != null && tileToBlockData.ContainsKey(tile))
+                Vector3 tileWorldPos = mineableTilemap.CellToWorld(tilePos) + new Vector3(mineableTilemap.cellSize.x / 2, mineableTilemap.cellSize.y / 2, 0);
+                float distance = Vector2.Distance(playerTransform.position, tileWorldPos);
+                
+                // Only highlight if BOTH hovering AND in range
+                if (distance <= miningRange)
                 {
-                    Vector3 tileWorldPos = mineableTilemap.CellToWorld(tilePos) + new Vector3(mineableTilemap.cellSize.x / 2, mineableTilemap.cellSize.y / 2, 0);
-                    float distance = Vector2.Distance(playerTransform.position, tileWorldPos);
-                    if (distance <= miningRange)
-                        ApplyHighlight(tilePos);
+                    tileToHighlight = tilePos;
                 }
             }
         }
         else
         {
-            if (isHighlighting)
+            currentHoveredTile = new Vector3Int(int.MinValue, int.MinValue, int.MinValue);
+        }
+        
+        // Apply/remove highlight based on what should be highlighted
+        if (tileToHighlight.HasValue)
+        {
+            if (!isHighlighting || lastHighlightedTile != tileToHighlight.Value)
             {
-                RemoveHighlight();
-                currentHoveredTile = new Vector3Int(int.MinValue, int.MinValue, int.MinValue);
+                RemoveHighlight(); // Remove old highlight first
+                ApplyHighlight(tileToHighlight.Value);
             }
+        }
+        else
+        {
+            RemoveHighlight();
         }
     }
 
