@@ -30,6 +30,12 @@ public class MiningManager : MonoBehaviour
     private bool isHighlighting = false;
     private Coroutine miningCoroutine;
 
+    // Cache for mineable check results
+    private Dictionary<Vector3Int, bool> mineableCache = new Dictionary<Vector3Int, bool>();
+    private Dictionary<Vector3Int, List<bool>> visibilityCache = new Dictionary<Vector3Int, List<bool>>(); // For debug drawing
+    private Vector3 lastPlayerPosition;
+    private float cacheInvalidateDistance = 0.1f; // Invalidate cache if player moves this much
+
     // Initializes the tile/block lookup for mining
     private void Start()
     {
@@ -40,12 +46,101 @@ public class MiningManager : MonoBehaviour
         }
         if (mainCamera == null)
             mainCamera = Camera.main;
+        
+        lastPlayerPosition = playerTransform.position;
     }
 
     private void Update()
     {
+        // Check if player moved significantly to invalidate cache
+        if (Vector3.Distance(playerTransform.position, lastPlayerPosition) > cacheInvalidateDistance)
+        {
+            mineableCache.Clear();
+            visibilityCache.Clear();
+            lastPlayerPosition = playerTransform.position;
+        }
+        
         HandleTileHighlighting();
         HandleMining();
+    }
+
+    // Get the 4 edge midpoints of the diamond-shaped tile in isometric view
+    private Vector2[] GetDiamondEdgePoints(Vector3Int blockPos)
+    {
+        Vector3 blockWorldPos = mineableTilemap.CellToWorld(blockPos);
+        Vector2 center = new Vector2(blockWorldPos.x, blockWorldPos.y) + 
+                new Vector2(isometricHorizontalOffset, isometricVerticalOffset) + 
+                new Vector2(mineableTilemap.cellSize.x / 2, mineableTilemap.cellSize.y / 2);
+        
+        // Diamond edge midpoints in isometric space
+        // The diamond is wider than it is tall in isometric view
+        float halfWidth = mineableTilemap.cellSize.x / 2;
+        float halfHeight = mineableTilemap.cellSize.y / 2;
+        
+        Vector2[] edgePoints = new Vector2[4];
+        edgePoints[0] = center + new Vector2(halfWidth/2, halfWidth/2);     // NE edge (top right)
+        edgePoints[1] = center + new Vector2(halfWidth/2, -halfHeight/2);   // SE edge (bottom right)
+        edgePoints[2] = center + new Vector2(-halfWidth/2, -halfHeight/2);    // SW edge (bottom left)
+        edgePoints[3] = center + new Vector2(-halfWidth/2, halfHeight/2);    // NW edge (top left)
+        
+        return edgePoints;
+    }
+
+    // Check if a block can be mined (has line-of-sight from player to ANY edge)
+    private bool IsBlockMineable(Vector3Int blockPos)
+    {
+        // Check cache first
+        if (mineableCache.ContainsKey(blockPos))
+            return mineableCache[blockPos];
+        
+        Vector2 playerPos = new Vector2(playerTransform.position.x, playerTransform.position.y);
+        Vector2[] edgePoints = GetDiamondEdgePoints(blockPos);
+        List<bool> edgeVisibility = new List<bool>();
+        bool anyEdgeVisible = false;
+        
+        // Check each edge point
+        for (int i = 0; i < edgePoints.Length; i++)
+        {
+            Vector2 direction = edgePoints[i] - playerPos;
+            float distance = direction.magnitude;
+            
+            // First check if this edge is within range
+            if (distance > miningRange)
+            {
+                edgeVisibility.Add(false);
+                continue;
+            }
+            
+            // Perform raycast from player to edge point
+            bool isVisible = true;
+            RaycastHit2D[] hits = Physics2D.RaycastAll(playerPos, direction.normalized, distance * 0.99f);
+            
+            // Check each hit to see if it's blocking our target
+            foreach (RaycastHit2D hit in hits)
+            {
+                if (hit.collider != null && hit.collider == mineableTilemap.GetComponent<TilemapCollider2D>())
+                {
+                    // Check if this hit is a different tile blocking our path
+                    Vector3Int hitTilePos = mineableTilemap.WorldToCell(hit.point + direction.normalized * 0.01f);
+                    
+                    // If we hit a tile that's not our target, this edge is blocked
+                    if (mineableTilemap.HasTile(hitTilePos) && hitTilePos != blockPos)
+                    {
+                        isVisible = false;
+                        break;
+                    }
+                }
+            }
+            
+            edgeVisibility.Add(isVisible);
+            if (isVisible) anyEdgeVisible = true;
+        }
+        
+        // Cache results
+        mineableCache[blockPos] = anyEdgeVisible;
+        visibilityCache[blockPos] = edgeVisibility;
+        
+        return anyEdgeVisible;
     }
 
     // Checks if a world point is within the bounds of a hexagon tile (with offsets)
@@ -119,7 +214,7 @@ public class MiningManager : MonoBehaviour
         return null;
     }
 
-    // Handles highlighting logic for hovered tiles
+    // Handles highlighting logic for hovered tiles - with mineable check
     private void HandleTileHighlighting()
     {
         if (Mouse.current == null) return;
@@ -140,11 +235,8 @@ public class MiningManager : MonoBehaviour
             TileBase tile = mineableTilemap.GetTile(tilePos);
             if (tile != null && tileToBlockData.ContainsKey(tile))
             {
-                Vector3 tileWorldPos = mineableTilemap.CellToWorld(tilePos) + new Vector3(mineableTilemap.cellSize.x / 2, mineableTilemap.cellSize.y / 2, 0);
-                float distance = Vector2.Distance(playerTransform.position, tileWorldPos);
-                
-                // Only highlight if BOTH hovering AND in range
-                if (distance <= miningRange)
+                // Check if block is mineable (in range and has line-of-sight to any edge)
+                if (IsBlockMineable(tilePos))
                 {
                     tileToHighlight = tilePos;
                 }
@@ -179,9 +271,13 @@ public class MiningManager : MonoBehaviour
             TileBase tile = mineableTilemap.GetTile(currentHoveredTile);
             if (tile != null && tileToBlockData.TryGetValue(tile, out BlockData blockData))
             {
-                if (miningCoroutine != null)
-                    StopCoroutine(miningCoroutine);
-                miningCoroutine = StartCoroutine(MineBlock(currentHoveredTile, blockData));
+                // Double-check mineability before starting coroutine
+                if (IsBlockMineable(currentHoveredTile))
+                {
+                    if (miningCoroutine != null)
+                        StopCoroutine(miningCoroutine);
+                    miningCoroutine = StartCoroutine(MineBlock(currentHoveredTile, blockData));
+                }
             }
         }
         if (Mouse.current.leftButton.wasReleasedThisFrame)
@@ -202,9 +298,10 @@ public class MiningManager : MonoBehaviour
         {
             elapsedTime += Time.deltaTime;
             float progress = elapsedTime / blockData.miningTime;
-            Vector3 tileWorldPos = mineableTilemap.CellToWorld(tilePos) + mineableTilemap.cellSize / 2;
-            float distance = Vector2.Distance(playerTransform.position, tileWorldPos);
-            if (distance > miningRange || currentHoveredTile != tilePos || !Mouse.current.leftButton.isPressed)
+            
+            // Check all conditions including mineability
+            if (!IsBlockMineable(tilePos) || currentHoveredTile != tilePos || 
+                !Mouse.current.leftButton.isPressed)
             {
                 yield break;
             }
@@ -213,6 +310,10 @@ public class MiningManager : MonoBehaviour
         SpawnDrops(tilePos, blockData);
         mineableTilemap.SetTile(tilePos, null);
         RemoveHighlight();
+        
+        // Clear cache since we modified the tilemap
+        mineableCache.Clear();
+        visibilityCache.Clear();
     }
 
     // Spawns block drops at the correct position
@@ -254,6 +355,7 @@ public class MiningManager : MonoBehaviour
             Gizmos.DrawWireSphere(playerTransform.position, miningRange);
         }
     }
+    
     // --- Draw a black outline around the selected (highlighted) tile in Scene view ---
     private void OnDrawGizmos()
     {
@@ -279,6 +381,21 @@ public class MiningManager : MonoBehaviour
                 Vector3 a = hexVerts[i];
                 Vector3 b = hexVerts[(i + 1) % hexVerts.Length];
                 Gizmos.DrawLine(a, b);
+            }
+            
+            // Draw debug rays from player to all 4 diamond edge points
+            if (playerTransform != null)
+            {
+                Vector2[] edgePoints = GetDiamondEdgePoints(currentHoveredTile);
+                List<bool> visibility = visibilityCache.ContainsKey(currentHoveredTile) ? 
+                    visibilityCache[currentHoveredTile] : new List<bool> { false, false, false, false };
+                
+                for (int i = 0; i < edgePoints.Length; i++)
+                {
+                    // Set color based on visibility of this specific edge
+                    Gizmos.color = (i < visibility.Count && visibility[i]) ? Color.green : Color.red;
+                    Gizmos.DrawLine(playerTransform.position, new Vector3(edgePoints[i].x, edgePoints[i].y, playerTransform.position.z));
+                }
             }
         }
     }
