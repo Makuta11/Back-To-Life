@@ -78,7 +78,7 @@ public class MiningManager : MonoBehaviour
         float halfHeight = mineableTilemap.cellSize.y / 2;
         
         Vector2[] edgePoints = new Vector2[4];
-        edgePoints[0] = center + new Vector2(halfWidth/2, halfWidth/2);     // NE edge (top right)
+        edgePoints[0] = center + new Vector2(halfWidth/2, halfHeight/2);     // NE edge (top right)
         edgePoints[1] = center + new Vector2(halfWidth/2, -halfHeight/2);   // SE edge (bottom right)
         edgePoints[2] = center + new Vector2(-halfWidth/2, -halfHeight/2);    // SW edge (bottom left)
         edgePoints[3] = center + new Vector2(-halfWidth/2, halfHeight/2);    // NW edge (top left)
