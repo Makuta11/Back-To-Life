@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: eba4b9e53fba04422a2db635a27b3757
+guid: a3cc2a07dbf424dc0987a1ef24bb4fcc
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -12,7 +12,7 @@ ScriptedImporter:
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
-    enableMipMap: 0
+    enableMipMap: 1
     fadeOut: 0
     borderMipMap: 0
     mipMapsPreserveCoverage: 0
@@ -73,7 +73,7 @@ ScriptedImporter:
     applyGammaDecoding: 0
   previousAsepriteImporterSettings:
     fileImportMode: 0
-    importHiddenLayers: 1
+    importHiddenLayers: 0
     layerImportMode: 1
     defaultPivotSpace: 0
     defaultPivotAlignment: 7
@@ -88,7 +88,7 @@ ScriptedImporter:
     generateSpriteAtlas: 1
   asepriteImporterSettings:
     fileImportMode: 0
-    importHiddenLayers: 1
+    importHiddenLayers: 0
     layerImportMode: 1
     defaultPivotSpace: 0
     defaultPivotAlignment: 7
@@ -102,7 +102,7 @@ ScriptedImporter:
     generateIndividualEvents: 1
     generateSpriteAtlas: 1
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638855779043915490
+  platformSettingsDirtyTick: 638859457548391210
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -127,7 +127,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: TempMiningBlocks
+  - name: Blocks-NormalMap
     originalName: 
     pivot: {x: 0.5, y: 0}
     alignment: 9
@@ -137,9 +137,9 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 1024
-      height: 256
-    spriteID: 295f4fc3576514c9ca0706b9534ef76b
+      width: 512
+      height: 128
+    spriteID: 84fea462940004ab88fc5507e8f621b3
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -149,9 +149,9 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
   spriteSheetImportData:
-  - name: StoneTile
+  - name: Blocks-NormalMap_0
     originalName: 
-    pivot: {x: 0.5, y: 0.25}
+    pivot: {x: 10, y: 10}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -161,18 +161,28 @@ ScriptedImporter:
       y: 0
       width: 128
       height: 128
-    spriteID: 8ff8cfe8a4bb44f7b84b8740b4be3367
+    spriteID: 47d516240a3da46768e0ad23ac5576d0
     spriteBone: []
-    spriteOutline: []
+    spriteOutline:
+    - outline:
+      - {x: 0, y: -64}
+      - {x: 64, y: 0}
+      - {x: 0, y: 64}
+      - {x: -64, y: 0}
     vertices: []
-    spritePhysicsOutline: []
+    spritePhysicsOutline:
+    - outline:
+      - {x: 0, y: -64}
+      - {x: 64, y: 0}
+      - {x: 0, y: 64}
+      - {x: -64, y: 0}
     indices: 
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: IronTile
+  - name: Blocks-NormalMap_1
     originalName: 
-    pivot: {x: 0.5, y: 0.25}
+    pivot: {x: 10, y: 10}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -182,18 +192,28 @@ ScriptedImporter:
       y: 0
       width: 128
       height: 128
-    spriteID: 49618e3c2b2df4e8cbd61dc528b8556f
+    spriteID: c12c3b6e376ea494684e0d9acdda72e5
     spriteBone: []
-    spriteOutline: []
+    spriteOutline:
+    - outline:
+      - {x: 0, y: -64}
+      - {x: 64, y: 0}
+      - {x: 0, y: 64}
+      - {x: -64, y: 0}
     vertices: []
-    spritePhysicsOutline: []
+    spritePhysicsOutline:
+    - outline:
+      - {x: 0, y: -64}
+      - {x: 64, y: 0}
+      - {x: 0, y: 64}
+      - {x: -64, y: 0}
     indices: 
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: GoldTile
+  - name: Blocks-NormalMap_2
     originalName: 
-    pivot: {x: 0.5, y: 0.25}
+    pivot: {x: 10, y: 10}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -203,18 +223,28 @@ ScriptedImporter:
       y: 0
       width: 128
       height: 128
-    spriteID: fc22cc629d4614d2eaefa21a89377af5
+    spriteID: f9d559e90b1644ad4b7ddfa1e9559c2a
     spriteBone: []
-    spriteOutline: []
+    spriteOutline:
+    - outline:
+      - {x: 0, y: -64}
+      - {x: 64, y: 0}
+      - {x: 0, y: 64}
+      - {x: -64, y: 0}
     vertices: []
-    spritePhysicsOutline: []
+    spritePhysicsOutline:
+    - outline:
+      - {x: 0, y: -64}
+      - {x: 64, y: 0}
+      - {x: 0, y: 64}
+      - {x: -64, y: 0}
     indices: 
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: CopperTile
+  - name: Blocks-NormalMap_3
     originalName: 
-    pivot: {x: 0.5, y: 0.25}
+    pivot: {x: 10, y: 10}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -224,11 +254,21 @@ ScriptedImporter:
       y: 0
       width: 128
       height: 128
-    spriteID: 91100b7ba778745b8a4b4dcc12a14899
+    spriteID: 49fe8a9b4223b4e98b7f8fc99fd69942
     spriteBone: []
-    spriteOutline: []
+    spriteOutline:
+    - outline:
+      - {x: 0, y: -64}
+      - {x: 64, y: 0}
+      - {x: 0, y: 64}
+      - {x: -64, y: 0}
     vertices: []
-    spritePhysicsOutline: []
+    spritePhysicsOutline:
+    - outline:
+      - {x: 0, y: -64}
+      - {x: 64, y: 0}
+      - {x: 0, y: 64}
+      - {x: -64, y: 0}
     indices: 
     edges: []
     tessellationDetail: 0
@@ -242,27 +282,19 @@ ScriptedImporter:
     customData: 
     rect:
       serializedVersion: 2
-      x: 0
-      y: 0
-      width: 1024
-      height: 256
-    spriteID: 34e30562bbca349e7913912a09992f72
+      x: 4
+      y: 4
+      width: 512
+      height: 128
+    spriteID: 95a5423c87821404bafc3142329d7678
     spriteBone: []
-    spriteOutline:
-    - outline:
-      - {x: 512, y: -68}
-      - {x: 512, y: 120}
-      - {x: 468, y: 128}
-      - {x: -402, y: 128}
-      - {x: -512, y: 86}
-      - {x: -512, y: -128}
-      - {x: 481, y: -128}
+    spriteOutline: []
     vertices: []
     spritePhysicsOutline: []
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
+    uvTransform: {x: 4, y: 4}
   asepriteLayers:
   - layerIndex: 0
     uuid:
@@ -276,7 +308,7 @@ ScriptedImporter:
     layerType: 0
     blendMode: 0
     cells:
-    - name: TempMiningBlocks
+    - name: Blocks-NormalMap
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -284,7 +316,7 @@ ScriptedImporter:
         y: 0
         width: 512
         height: 128
-      spriteId: 34e30562bbca349e7913912a09992f72
+      spriteId: 95a5423c87821404bafc3142329d7678
     linkedCells: []
     tileCells: []
     tileSetIndex: 0
@@ -328,9 +360,7 @@ ScriptedImporter:
     allowsAlphaSplitting: 0
     androidETC2FallbackOverride: 0
   generatePhysicsShape: 0
-  secondarySpriteTextures:
-  - name: _MaskTex
-    texture: {fileID: -8328923581568760697, guid: 0450e661ae0414f6dacde50f550b145b, type: 3}
+  secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 512, y: 128}
   previousTextureSize: {x: 512, y: 128}
