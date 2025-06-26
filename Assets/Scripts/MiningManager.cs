@@ -10,6 +10,7 @@ public class MiningManager : MonoBehaviour
     [Header("Tilemap References")]
     public Tilemap mineableTilemap;  // Tilemap to mine from
     public Camera mainCamera;        // Main camera (assigned or will auto-find)
+    private ExplorationFogManager fogManager;
 
     [Header("Block Data")]
     public List<BlockData> blockDataList = new List<BlockData>(); // All mineable blocks
@@ -46,8 +47,15 @@ public class MiningManager : MonoBehaviour
         }
         if (mainCamera == null)
             mainCamera = Camera.main;
-        
+
         lastPlayerPosition = playerTransform.position;
+
+        // Find the fog manager
+        fogManager = Object.FindAnyObjectByType<ExplorationFogManager>();
+        if (fogManager == null)
+        {
+            Debug.LogWarning("ExplorationFogManager not found! Fog of war checks will be disabled.");
+        }
     }
 
     private void Update()
@@ -89,6 +97,12 @@ public class MiningManager : MonoBehaviour
     // Check if a block can be mined (has line-of-sight from player to ANY edge)
     private bool IsBlockMineable(Vector3Int blockPos)
     {
+        // Check fog first - can't mine what hasn't been discovered
+        if (fogManager != null && !fogManager.IsTileDiscovered(blockPos))
+        {
+            return false;
+        }
+
         // Check cache first
         if (mineableCache.ContainsKey(blockPos))
             return mineableCache[blockPos];

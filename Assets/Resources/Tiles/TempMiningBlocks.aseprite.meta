@@ -233,6 +233,27 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
+  - name: FogSprite
+    originalName: 
+    pivot: {x: 0.5, y: 0.25}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 512
+      y: 0
+      width: 128
+      height: 128
+    spriteID: f71094c3afe074841b915f7df8b8c6aa
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
   tileSetImportData:
   - name: Layer 1
     originalName: 
@@ -282,7 +303,7 @@ ScriptedImporter:
       cellRect:
         x: 0
         y: 0
-        width: 512
+        width: 640
         height: 128
       spriteId: 34e30562bbca349e7913912a09992f72
     linkedCells: []
@@ -332,5 +353,5 @@ ScriptedImporter:
   - name: _MaskTex
     texture: {fileID: -8328923581568760697, guid: 0450e661ae0414f6dacde50f550b145b, type: 3}
   spritePackingTag: 
-  canvasSize: {x: 512, y: 128}
-  previousTextureSize: {x: 512, y: 128}
+  canvasSize: {x: 640, y: 128}
+  previousTextureSize: {x: 1024, y: 128}
