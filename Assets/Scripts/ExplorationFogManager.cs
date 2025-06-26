@@ -14,7 +14,10 @@ public class ExplorationFogManager : MonoBehaviour
     public Transform playerTransform;     // Reference to player
     public float discoveryRadius = 4.5f;  // Radius in tiles to discover
     public float fadeSpeed = 2f;          // How fast fog fades out
-    
+    [Header("Player Center Offset")]
+    [Tooltip("Offset from player transform position for fog discovery center")]
+    public Vector3 playerCenterOffset = new Vector3(0, 0, 0);
+
     [Header("Visual Settings")]
     public Color fogColor = Color.black;  // Fog color (can adjust alpha)
     public float updateInterval = 0.1f;   // How often to check for new discoveries
@@ -31,7 +34,7 @@ public class ExplorationFogManager : MonoBehaviour
     // Chunk management for future procedural generation
     private const int CHUNK_SIZE = 32;
     private Dictionary<Vector2Int, HashSet<Vector3Int>> discoveredChunks = new Dictionary<Vector2Int, HashSet<Vector3Int>>();
-    
+
     private void Start()
     {
         if (fogTilemap == null)
@@ -39,23 +42,25 @@ public class ExplorationFogManager : MonoBehaviour
             Debug.LogError("Fog Tilemap not assigned!");
             return;
         }
-        
+
         if (playerTransform == null)
         {
             GameObject player = GameObject.FindGameObjectWithTag("Player");
             if (player != null)
                 playerTransform = player.transform;
         }
-        
+
         // Initialize fog over the current world
         InitializeFog();
-        
+
         // Reveal starting area
         if (playerTransform != null)
         {
-            lastPlayerPosition = playerTransform.position;
-            RevealArea(playerTransform.position);
+            Vector3 discoveryCenter = playerTransform.position + playerCenterOffset;
+            lastPlayerPosition = discoveryCenter;
+            RevealArea(discoveryCenter);
         }
+
     }
     
     private void Update()
@@ -64,16 +69,18 @@ public class ExplorationFogManager : MonoBehaviour
         
         updateTimer += Time.deltaTime;
         
-        // Only update if enough time has passed
         if (updateTimer >= updateInterval)
         {
             updateTimer = 0f;
             
+            // Apply offset to player position
+            Vector3 discoveryCenter = playerTransform.position + playerCenterOffset;
+            
             // Check if player has moved
-            if (Vector3.Distance(playerTransform.position, lastPlayerPosition) > 0.1f)
+            if (Vector3.Distance(discoveryCenter, lastPlayerPosition) > 0.1f)
             {
-                RevealArea(playerTransform.position);
-                lastPlayerPosition = playerTransform.position;
+                RevealArea(discoveryCenter);
+                lastPlayerPosition = discoveryCenter;
             }
         }
     }
