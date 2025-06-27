@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0450e661ae0414f6dacde50f550b145b
+guid: 832afa4f0152641678d665d01c62be49
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -30,7 +30,7 @@ ScriptedImporter:
     vTOnly: 0
     ignoreMipmapLimit: 0
     nPOTScale: 1
-    sRGBTexture: 0
+    sRGBTexture: 1
     spriteMode: 2
     spriteExtrude: 1
     spriteMeshType: 1
@@ -102,7 +102,7 @@ ScriptedImporter:
     generateIndividualEvents: 1
     generateSpriteAtlas: 1
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638859434571145920
+  platformSettingsDirtyTick: 638866645974874070
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -127,7 +127,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: Blocks-MaskMaps
+  - name: Frame_0
     originalName: 
     pivot: {x: 0.5, y: 0}
     alignment: 9
@@ -137,9 +137,9 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 512
+      width: 640
       height: 128
-    spriteID: 68a6ca9bff8404054a9d7b6ae052ecc5
+    spriteID: e3284ebe2bbe54bb7a0d3ad6a3d5dadd
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -148,323 +148,71 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
+  - name: Frame_1
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 140
+      width: 640
+      height: 128
+    spriteID: cdcf362ad952b48389ee4fb3670f90ed
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 140}
+  - name: Frame_2
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 276
+      width: 640
+      height: 128
+    spriteID: 792dd2624324b4bab87d37392fe90e59
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 276}
+  - name: Frame_3
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 412
+      width: 640
+      height: 128
+    spriteID: 8cd47e9d35a42463b92bfc53bbb229fb
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 412}
   spriteSheetImportData:
-  - name: Blocks-MaskMaps_0
-    originalName: 
-    pivot: {x: 0.5, y: 0.25}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    customData: 
-    rect:
-      serializedVersion: 2
-      x: 0
-      y: 384
-      width: 128
-      height: 128
-    spriteID: 2dbfa39f9231e4f00b93ec10d1510fd3
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
-  - name: Blocks-MaskMaps_1
-    originalName: 
-    pivot: {x: 0.5, y: 0.25}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    customData: 
-    rect:
-      serializedVersion: 2
-      x: 128
-      y: 384
-      width: 128
-      height: 128
-    spriteID: 893b57110540d472aa26908fb1a3801e
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
-  - name: Blocks-MaskMaps_2
-    originalName: 
-    pivot: {x: 0.5, y: 0.25}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    customData: 
-    rect:
-      serializedVersion: 2
-      x: 256
-      y: 384
-      width: 128
-      height: 128
-    spriteID: 9823821bf96114e85b8df04b3e279598
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
-  - name: Blocks-MaskMaps_3
-    originalName: 
-    pivot: {x: 0.5, y: 0.25}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    customData: 
-    rect:
-      serializedVersion: 2
-      x: 384
-      y: 384
-      width: 128
-      height: 128
-    spriteID: 3500371974c3845bcbf3919d556b5f0b
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
-  - name: Blocks-MaskMaps_4
-    originalName: 
-    pivot: {x: 0.5, y: 0.25}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    customData: 
-    rect:
-      serializedVersion: 2
-      x: 512
-      y: 384
-      width: 128
-      height: 128
-    spriteID: 5d961de69545d4054a92b632c7067a14
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
-  - name: Blocks-MaskMaps_5
-    originalName: 
-    pivot: {x: 0.5, y: 0.25}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    customData: 
-    rect:
-      serializedVersion: 2
-      x: 0
-      y: 256
-      width: 128
-      height: 128
-    spriteID: a670d7b8a9aca4d9c82a0c7e361f7612
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
-  - name: Blocks-MaskMaps_6
-    originalName: 
-    pivot: {x: 0.5, y: 0.25}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    customData: 
-    rect:
-      serializedVersion: 2
-      x: 128
-      y: 256
-      width: 128
-      height: 128
-    spriteID: 1ebea38c6a78145b1a132939f7c08bdb
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
-  - name: Blocks-MaskMaps_7
-    originalName: 
-    pivot: {x: 0.5, y: 0.25}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    customData: 
-    rect:
-      serializedVersion: 2
-      x: 256
-      y: 256
-      width: 128
-      height: 128
-    spriteID: 0ad886e2bbd8d4bb7a7f319582cf6dc7
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
-  - name: Blocks-MaskMaps_8
-    originalName: 
-    pivot: {x: 0.5, y: 0.25}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    customData: 
-    rect:
-      serializedVersion: 2
-      x: 384
-      y: 256
-      width: 128
-      height: 128
-    spriteID: 3391d2f3c75d5422ba1aa185508648f8
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
-  - name: Blocks-MaskMaps_9
-    originalName: 
-    pivot: {x: 0.5, y: 0.25}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    customData: 
-    rect:
-      serializedVersion: 2
-      x: 512
-      y: 256
-      width: 128
-      height: 128
-    spriteID: 1d2898570e6c64fa1b62c467f27bf8a5
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
-  - name: Blocks-MaskMaps_10
-    originalName: 
-    pivot: {x: 0.5, y: 0.25}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    customData: 
-    rect:
-      serializedVersion: 2
-      x: 0
-      y: 128
-      width: 128
-      height: 128
-    spriteID: e5f23969fd1784743b2a96cd68c3d0a0
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
-  - name: Blocks-MaskMaps_11
-    originalName: 
-    pivot: {x: 0.5, y: 0.25}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    customData: 
-    rect:
-      serializedVersion: 2
-      x: 128
-      y: 128
-      width: 128
-      height: 128
-    spriteID: 56d46328b2b8c49b0b9ab5f04cd5ff3a
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
-  - name: Blocks-MaskMaps_12
-    originalName: 
-    pivot: {x: 0.5, y: 0.25}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    customData: 
-    rect:
-      serializedVersion: 2
-      x: 256
-      y: 128
-      width: 128
-      height: 128
-    spriteID: e4765a220bb2b46bfb83e6d1289b8b16
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
-  - name: Blocks-MaskMaps_13
-    originalName: 
-    pivot: {x: 0.5, y: 0.25}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    customData: 
-    rect:
-      serializedVersion: 2
-      x: 384
-      y: 128
-      width: 128
-      height: 128
-    spriteID: d9f2c4a42c9104777801851384e66ee2
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
-  - name: Blocks-MaskMaps_14
-    originalName: 
-    pivot: {x: 0.5, y: 0.25}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    customData: 
-    rect:
-      serializedVersion: 2
-      x: 512
-      y: 128
-      width: 128
-      height: 128
-    spriteID: a4ae466b5cce347bda55f42ce7742ba2
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
-  - name: Blocks-MaskMaps_15
+  - name: Blocks-MaskMaps(no frames)_0
     originalName: 
     pivot: {x: 0.5, y: 0.25}
     alignment: 9
@@ -476,7 +224,7 @@ ScriptedImporter:
       y: 0
       width: 128
       height: 128
-    spriteID: 20d1f4bb8f03c41f5913f8bfd8bd3b83
+    spriteID: ca651a6edcb7c460a93db8e1fab0c5c8
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -485,7 +233,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: Blocks-MaskMaps_16
+  - name: Blocks-MaskMaps(no frames)_1
     originalName: 
     pivot: {x: 0.5, y: 0.25}
     alignment: 9
@@ -497,7 +245,7 @@ ScriptedImporter:
       y: 0
       width: 128
       height: 128
-    spriteID: 589444fa22f89450ea9b05cb94556643
+    spriteID: 5835a2b6835fd47d79376053509be008
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -506,7 +254,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: Blocks-MaskMaps_17
+  - name: Blocks-MaskMaps(no frames)_2
     originalName: 
     pivot: {x: 0.5, y: 0.25}
     alignment: 9
@@ -518,7 +266,7 @@ ScriptedImporter:
       y: 0
       width: 128
       height: 128
-    spriteID: a1d8db1edd5c74f83b09109bc5dc961e
+    spriteID: e9b4f9aa7be7d4342832c031e551d36c
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -527,7 +275,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: Blocks-MaskMaps_18
+  - name: Blocks-MaskMaps(no frames)_3
     originalName: 
     pivot: {x: 0.5, y: 0.25}
     alignment: 9
@@ -539,7 +287,7 @@ ScriptedImporter:
       y: 0
       width: 128
       height: 128
-    spriteID: 980e493e1ed1e47ea801261dfc110b03
+    spriteID: 4fbd1fcaee9bb477d92783c0ae9b583a
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -548,7 +296,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: Blocks-MaskMaps_19
+  - name: Blocks-MaskMaps(no frames)_4
     originalName: 
     pivot: {x: 0.5, y: 0.25}
     alignment: 9
@@ -560,7 +308,7 @@ ScriptedImporter:
       y: 0
       width: 128
       height: 128
-    spriteID: a35796de86963403f98ece0352086853
+    spriteID: 8ef53d013da3a4c4a986d60f3553d132
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -573,17 +321,17 @@ ScriptedImporter:
   asepriteLayers:
   - layerIndex: 0
     uuid:
-      value0: 439188664
+      value0: 3125038978
       value1: 0
       value2: 0
       value3: 0
     guid: 0
-    name: Blocks-MaskMaps
+    name: Blocks-MaskMaps(no frames)
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Frame_0
+    - name: Blocks-MaskMaps(no frames)
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -591,34 +339,7 @@ ScriptedImporter:
         y: 0
         width: 640
         height: 128
-      spriteId: 68a6ca9bff8404054a9d7b6ae052ecc5
-    - name: Frame_1
-      frameIndex: 1
-      additiveSortOrder: 0
-      cellRect:
-        x: 0
-        y: 0
-        width: 640
-        height: 128
-      spriteId: afba375ccddae4e9a9bbd35bf755bcc2
-    - name: Frame_2
-      frameIndex: 2
-      additiveSortOrder: 0
-      cellRect:
-        x: 0
-        y: 0
-        width: 640
-        height: 128
-      spriteId: 42587135456b941eca1448fe349b98bb
-    - name: Frame_3
-      frameIndex: 3
-      additiveSortOrder: 0
-      cellRect:
-        x: 0
-        y: 0
-        width: 640
-        height: 128
-      spriteId: f9a8578fa54704e2e8f9e3d33508f0be
+      spriteId: e3284ebe2bbe54bb7a0d3ad6a3d5dadd
     linkedCells: []
     tileCells: []
     tileSetIndex: 0
@@ -665,4 +386,4 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 640, y: 128}
-  previousTextureSize: {x: 1024, y: 512}
+  previousTextureSize: {x: 1024, y: 128}

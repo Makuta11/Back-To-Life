@@ -13,7 +13,11 @@ MonoBehaviour:
   m_Name: GoldBlockData
   m_EditorClassIdentifier: 
   blockName: Gold Block
-  blockTile: {fileID: 11400000, guid: ba21756360efd4690acfd7a26535e482, type: 2}
+  blockTile: {fileID: 11400000, guid: 23545a8f9f59c4407a834d24be472992, type: 2}
+  miningStageSprites:
+  - {fileID: -4140801690243757359, guid: b7c04867ac2ac4377a6c13127352cf8c, type: 3}
+  - {fileID: -9132780161848767266, guid: b7c04867ac2ac4377a6c13127352cf8c, type: 3}
+  - {fileID: -3872773666830499417, guid: b7c04867ac2ac4377a6c13127352cf8c, type: 3}
   miningTime: 1
   dropPrefab: {fileID: 6131221070387171347, guid: ea667dac1ef364158989df09e7329922, type: 3}
   minDropAmount: 2

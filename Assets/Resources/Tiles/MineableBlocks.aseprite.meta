@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0450e661ae0414f6dacde50f550b145b
+guid: b7c04867ac2ac4377a6c13127352cf8c
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -30,7 +30,7 @@ ScriptedImporter:
     vTOnly: 0
     ignoreMipmapLimit: 0
     nPOTScale: 1
-    sRGBTexture: 0
+    sRGBTexture: 1
     spriteMode: 2
     spriteExtrude: 1
     spriteMeshType: 1
@@ -102,7 +102,7 @@ ScriptedImporter:
     generateIndividualEvents: 1
     generateSpriteAtlas: 1
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638859434571145920
+  platformSettingsDirtyTick: 638866610545079840
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -127,7 +127,28 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: Blocks-MaskMaps
+  - name: Frame_0
+    originalName: 
+    pivot: {x: 0.5, y: 0.25}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 640
+      height: 128
+    spriteID: ff852d5a372b74485a0fe346ae2f8acb
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  - name: Frame_1
     originalName: 
     pivot: {x: 0.5, y: 0}
     alignment: 9
@@ -135,11 +156,11 @@ ScriptedImporter:
     customData: 
     rect:
       serializedVersion: 2
-      x: 4
-      y: 4
-      width: 512
+      x: 0
+      y: 128
+      width: 640
       height: 128
-    spriteID: 68a6ca9bff8404054a9d7b6ae052ecc5
+    spriteID: 6c549dc7576fc4940a0ce95519609012
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -147,9 +168,51 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 4}
+    uvTransform: {x: 0, y: 128}
+  - name: Frame_2
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 0
+      y: 256
+      width: 640
+      height: 128
+    spriteID: 7a0bf3439c4f74634ab422fd165061cb
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 256}
+  - name: Frame_3
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 0
+      y: 384
+      width: 640
+      height: 128
+    spriteID: afb32c4fa507548208c3e45f6386e1fd
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 384}
   spriteSheetImportData:
-  - name: Blocks-MaskMaps_0
+  - name: Stone_3
     originalName: 
     pivot: {x: 0.5, y: 0.25}
     alignment: 9
@@ -161,7 +224,7 @@ ScriptedImporter:
       y: 384
       width: 128
       height: 128
-    spriteID: 2dbfa39f9231e4f00b93ec10d1510fd3
+    spriteID: 32780a52ff88c4c2c9f564a5219f478f
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -170,7 +233,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: Blocks-MaskMaps_1
+  - name: Iron_3
     originalName: 
     pivot: {x: 0.5, y: 0.25}
     alignment: 9
@@ -182,7 +245,7 @@ ScriptedImporter:
       y: 384
       width: 128
       height: 128
-    spriteID: 893b57110540d472aa26908fb1a3801e
+    spriteID: 6a75b55373cb9421487aaed8780acd23
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -191,7 +254,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: Blocks-MaskMaps_2
+  - name: Gold_3
     originalName: 
     pivot: {x: 0.5, y: 0.25}
     alignment: 9
@@ -203,7 +266,7 @@ ScriptedImporter:
       y: 384
       width: 128
       height: 128
-    spriteID: 9823821bf96114e85b8df04b3e279598
+    spriteID: c66e7d307d299439998ae8bfc48cf160
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -212,7 +275,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: Blocks-MaskMaps_3
+  - name: Copper_3
     originalName: 
     pivot: {x: 0.5, y: 0.25}
     alignment: 9
@@ -220,11 +283,11 @@ ScriptedImporter:
     customData: 
     rect:
       serializedVersion: 2
-      x: 384
+      x: 383
       y: 384
       width: 128
       height: 128
-    spriteID: 3500371974c3845bcbf3919d556b5f0b
+    spriteID: 5034dcfab53ba40b282ed214110246d0
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -233,7 +296,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: Blocks-MaskMaps_4
+  - name: Fog3
     originalName: 
     pivot: {x: 0.5, y: 0.25}
     alignment: 9
@@ -245,7 +308,7 @@ ScriptedImporter:
       y: 384
       width: 128
       height: 128
-    spriteID: 5d961de69545d4054a92b632c7067a14
+    spriteID: 2d185d26e52594057968a68db96d3544
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -254,7 +317,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: Blocks-MaskMaps_5
+  - name: Stone_2
     originalName: 
     pivot: {x: 0.5, y: 0.25}
     alignment: 9
@@ -266,7 +329,7 @@ ScriptedImporter:
       y: 256
       width: 128
       height: 128
-    spriteID: a670d7b8a9aca4d9c82a0c7e361f7612
+    spriteID: c7e0eec619eb949e2aec3e86bb7b3b88
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -275,7 +338,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: Blocks-MaskMaps_6
+  - name: Iron_2
     originalName: 
     pivot: {x: 0.5, y: 0.25}
     alignment: 9
@@ -287,7 +350,7 @@ ScriptedImporter:
       y: 256
       width: 128
       height: 128
-    spriteID: 1ebea38c6a78145b1a132939f7c08bdb
+    spriteID: 801a30ec4f0a54c93b9f0785ea0174be
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -296,7 +359,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: Blocks-MaskMaps_7
+  - name: Gold_2
     originalName: 
     pivot: {x: 0.5, y: 0.25}
     alignment: 9
@@ -308,7 +371,7 @@ ScriptedImporter:
       y: 256
       width: 128
       height: 128
-    spriteID: 0ad886e2bbd8d4bb7a7f319582cf6dc7
+    spriteID: 387351e6ab9064ebc9c20343ccb2105e
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -317,7 +380,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: Blocks-MaskMaps_8
+  - name: Copper_2
     originalName: 
     pivot: {x: 0.5, y: 0.25}
     alignment: 9
@@ -329,7 +392,7 @@ ScriptedImporter:
       y: 256
       width: 128
       height: 128
-    spriteID: 3391d2f3c75d5422ba1aa185508648f8
+    spriteID: 88c0c0886deda4b1c9b31c69fe73b9dd
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -338,7 +401,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: Blocks-MaskMaps_9
+  - name: Fog2
     originalName: 
     pivot: {x: 0.5, y: 0.25}
     alignment: 9
@@ -350,7 +413,7 @@ ScriptedImporter:
       y: 256
       width: 128
       height: 128
-    spriteID: 1d2898570e6c64fa1b62c467f27bf8a5
+    spriteID: 14fc544fd44164292bc6233e5a15effb
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -359,7 +422,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: Blocks-MaskMaps_10
+  - name: Stone_1
     originalName: 
     pivot: {x: 0.5, y: 0.25}
     alignment: 9
@@ -371,7 +434,7 @@ ScriptedImporter:
       y: 128
       width: 128
       height: 128
-    spriteID: e5f23969fd1784743b2a96cd68c3d0a0
+    spriteID: 89b6f750ffd134be5a2f4a07f40517d3
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -380,7 +443,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: Blocks-MaskMaps_11
+  - name: Iron_1
     originalName: 
     pivot: {x: 0.5, y: 0.25}
     alignment: 9
@@ -392,7 +455,7 @@ ScriptedImporter:
       y: 128
       width: 128
       height: 128
-    spriteID: 56d46328b2b8c49b0b9ab5f04cd5ff3a
+    spriteID: 5d1b2492722944aff9f815366c0aa1ba
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -401,7 +464,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: Blocks-MaskMaps_12
+  - name: Gold_1
     originalName: 
     pivot: {x: 0.5, y: 0.25}
     alignment: 9
@@ -413,7 +476,7 @@ ScriptedImporter:
       y: 128
       width: 128
       height: 128
-    spriteID: e4765a220bb2b46bfb83e6d1289b8b16
+    spriteID: 87e85f89687f04923985e43b1dc9ff0c
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -422,7 +485,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: Blocks-MaskMaps_13
+  - name: Copper_1
     originalName: 
     pivot: {x: 0.5, y: 0.25}
     alignment: 9
@@ -434,7 +497,7 @@ ScriptedImporter:
       y: 128
       width: 128
       height: 128
-    spriteID: d9f2c4a42c9104777801851384e66ee2
+    spriteID: 9db465e2878d4441ea69e37533e7a22f
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -443,7 +506,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: Blocks-MaskMaps_14
+  - name: Fog1
     originalName: 
     pivot: {x: 0.5, y: 0.25}
     alignment: 9
@@ -455,7 +518,7 @@ ScriptedImporter:
       y: 128
       width: 128
       height: 128
-    spriteID: a4ae466b5cce347bda55f42ce7742ba2
+    spriteID: bb9e094d3f75b4dc9a69958ca4c7c9c6
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -464,7 +527,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: Blocks-MaskMaps_15
+  - name: Stone_0
     originalName: 
     pivot: {x: 0.5, y: 0.25}
     alignment: 9
@@ -476,7 +539,7 @@ ScriptedImporter:
       y: 0
       width: 128
       height: 128
-    spriteID: 20d1f4bb8f03c41f5913f8bfd8bd3b83
+    spriteID: 25221cb81518e4206925cb1b27406191
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -485,7 +548,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: Blocks-MaskMaps_16
+  - name: Iron_0
     originalName: 
     pivot: {x: 0.5, y: 0.25}
     alignment: 9
@@ -497,7 +560,7 @@ ScriptedImporter:
       y: 0
       width: 128
       height: 128
-    spriteID: 589444fa22f89450ea9b05cb94556643
+    spriteID: c02b3de113bc348039c7a7dff97fdb7d
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -506,7 +569,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: Blocks-MaskMaps_17
+  - name: Gold_0
     originalName: 
     pivot: {x: 0.5, y: 0.25}
     alignment: 9
@@ -518,7 +581,7 @@ ScriptedImporter:
       y: 0
       width: 128
       height: 128
-    spriteID: a1d8db1edd5c74f83b09109bc5dc961e
+    spriteID: 289c173f7176e49cf91f37c560537af5
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -527,7 +590,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: Blocks-MaskMaps_18
+  - name: Copper_0
     originalName: 
     pivot: {x: 0.5, y: 0.25}
     alignment: 9
@@ -539,7 +602,7 @@ ScriptedImporter:
       y: 0
       width: 128
       height: 128
-    spriteID: 980e493e1ed1e47ea801261dfc110b03
+    spriteID: c1316b83ac5124bccafc7440b49b273a
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -548,7 +611,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: Blocks-MaskMaps_19
+  - name: Fog
     originalName: 
     pivot: {x: 0.5, y: 0.25}
     alignment: 9
@@ -560,7 +623,7 @@ ScriptedImporter:
       y: 0
       width: 128
       height: 128
-    spriteID: a35796de86963403f98ece0352086853
+    spriteID: 9094c26dad718414ab4309cabc4a6e54
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -573,12 +636,12 @@ ScriptedImporter:
   asepriteLayers:
   - layerIndex: 0
     uuid:
-      value0: 439188664
+      value0: 2817888615
       value1: 0
       value2: 0
       value3: 0
     guid: 0
-    name: Blocks-MaskMaps
+    name: MineableBlocks
     layerFlags: 0
     layerType: 0
     blendMode: 0
@@ -591,7 +654,7 @@ ScriptedImporter:
         y: 0
         width: 640
         height: 128
-      spriteId: 68a6ca9bff8404054a9d7b6ae052ecc5
+      spriteId: ff852d5a372b74485a0fe346ae2f8acb
     - name: Frame_1
       frameIndex: 1
       additiveSortOrder: 0
@@ -600,7 +663,7 @@ ScriptedImporter:
         y: 0
         width: 640
         height: 128
-      spriteId: afba375ccddae4e9a9bbd35bf755bcc2
+      spriteId: 6c549dc7576fc4940a0ce95519609012
     - name: Frame_2
       frameIndex: 2
       additiveSortOrder: 0
@@ -609,7 +672,7 @@ ScriptedImporter:
         y: 0
         width: 640
         height: 128
-      spriteId: 42587135456b941eca1448fe349b98bb
+      spriteId: 7a0bf3439c4f74634ab422fd165061cb
     - name: Frame_3
       frameIndex: 3
       additiveSortOrder: 0
@@ -618,7 +681,7 @@ ScriptedImporter:
         y: 0
         width: 640
         height: 128
-      spriteId: f9a8578fa54704e2e8f9e3d33508f0be
+      spriteId: afb32c4fa507548208c3e45f6386e1fd
     linkedCells: []
     tileCells: []
     tileSetIndex: 0
@@ -662,7 +725,9 @@ ScriptedImporter:
     allowsAlphaSplitting: 0
     androidETC2FallbackOverride: 0
   generatePhysicsShape: 0
-  secondarySpriteTextures: []
+  secondarySpriteTextures:
+  - name: _MaskTex
+    texture: {fileID: -8328923581568760697, guid: 0450e661ae0414f6dacde50f550b145b, type: 3}
   spritePackingTag: 
   canvasSize: {x: 640, y: 128}
   previousTextureSize: {x: 1024, y: 512}

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: eba4b9e53fba04422a2db635a27b3757
+guid: 9dfc39ef2ce4f44a385daeb0bf8aa66b
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -73,7 +73,7 @@ ScriptedImporter:
     applyGammaDecoding: 0
   previousAsepriteImporterSettings:
     fileImportMode: 0
-    importHiddenLayers: 1
+    importHiddenLayers: 0
     layerImportMode: 1
     defaultPivotSpace: 0
     defaultPivotAlignment: 7
@@ -88,7 +88,7 @@ ScriptedImporter:
     generateSpriteAtlas: 1
   asepriteImporterSettings:
     fileImportMode: 0
-    importHiddenLayers: 1
+    importHiddenLayers: 0
     layerImportMode: 1
     defaultPivotSpace: 0
     defaultPivotAlignment: 7
@@ -102,7 +102,7 @@ ScriptedImporter:
     generateIndividualEvents: 1
     generateSpriteAtlas: 1
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638855779043915490
+  platformSettingsDirtyTick: 638866665404581330
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -127,7 +127,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: TempMiningBlocks
+  - name: TempMiningBlocks.aseprite 00-13-33-812
     originalName: 
     pivot: {x: 0.5, y: 0}
     alignment: 9
@@ -135,33 +135,11 @@ ScriptedImporter:
     customData: 
     rect:
       serializedVersion: 2
-      x: 4
-      y: 4
-      width: 1024
-      height: 256
-    spriteID: 295f4fc3576514c9ca0706b9534ef76b
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 4, y: 4}
-  spriteSheetImportData:
-  - name: StoneTile
-    originalName: 
-    pivot: {x: 0.5, y: 0.25}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    customData: 
-    rect:
-      serializedVersion: 2
       x: 0
       y: 0
-      width: 128
+      width: 640
       height: 128
-    spriteID: 8ff8cfe8a4bb44f7b84b8740b4be3367
+    spriteID: ad74481a59fa14f11b377065dfd77c5f
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -170,10 +148,32 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: IronTile
+  spriteSheetImportData:
+  - name: TempMiningBlocks.aseprite 00-13-33-812_0
     originalName: 
-    pivot: {x: 0.5, y: 0.25}
-    alignment: 9
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 128
+      height: 128
+    spriteID: 0d26104a22ef2429993e84686b63907b
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  - name: TempMiningBlocks.aseprite 00-13-33-812_1
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -182,7 +182,7 @@ ScriptedImporter:
       y: 0
       width: 128
       height: 128
-    spriteID: 49618e3c2b2df4e8cbd61dc528b8556f
+    spriteID: 638dc61e270064197bfa052d2bace7f6
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -191,10 +191,10 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: GoldTile
+  - name: TempMiningBlocks.aseprite 00-13-33-812_2
     originalName: 
-    pivot: {x: 0.5, y: 0.25}
-    alignment: 9
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -203,7 +203,7 @@ ScriptedImporter:
       y: 0
       width: 128
       height: 128
-    spriteID: fc22cc629d4614d2eaefa21a89377af5
+    spriteID: 623665cdace734a82be5db368b306e98
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -212,10 +212,10 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: CopperTile
+  - name: TempMiningBlocks.aseprite 00-13-33-812_3
     originalName: 
-    pivot: {x: 0.5, y: 0.25}
-    alignment: 9
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -224,7 +224,7 @@ ScriptedImporter:
       y: 0
       width: 128
       height: 128
-    spriteID: 91100b7ba778745b8a4b4dcc12a14899
+    spriteID: 4afb7ddf66e334bb3a21b1a6bbd19326
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -233,10 +233,10 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: FogSprite
+  - name: TempMiningBlocks.aseprite 00-13-33-812_4
     originalName: 
-    pivot: {x: 0.5, y: 0.25}
-    alignment: 9
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -245,7 +245,7 @@ ScriptedImporter:
       y: 0
       width: 128
       height: 128
-    spriteID: f71094c3afe074841b915f7df8b8c6aa
+    spriteID: 4ea13a34ef3344c85979da37aab5361d
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -254,50 +254,21 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  tileSetImportData:
-  - name: Layer 1
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    customData: 
-    rect:
-      serializedVersion: 2
-      x: 0
-      y: 0
-      width: 1024
-      height: 256
-    spriteID: 34e30562bbca349e7913912a09992f72
-    spriteBone: []
-    spriteOutline:
-    - outline:
-      - {x: 512, y: -68}
-      - {x: 512, y: 120}
-      - {x: 468, y: 128}
-      - {x: -402, y: 128}
-      - {x: -512, y: 86}
-      - {x: -512, y: -128}
-      - {x: 481, y: -128}
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
+  tileSetImportData: []
   asepriteLayers:
   - layerIndex: 0
     uuid:
-      value0: 4287466680
+      value0: 3137582595
       value1: 0
       value2: 0
       value3: 0
     guid: 0
-    name: Layer 1
-    layerFlags: 3
+    name: TempMiningBlocks.aseprite 00-13-33-812
+    layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: TempMiningBlocks
+    - name: TempMiningBlocks.aseprite 00-13-33-812
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -305,7 +276,7 @@ ScriptedImporter:
         y: 0
         width: 640
         height: 128
-      spriteId: 34e30562bbca349e7913912a09992f72
+      spriteId: ad74481a59fa14f11b377065dfd77c5f
     linkedCells: []
     tileCells: []
     tileSetIndex: 0
@@ -349,9 +320,7 @@ ScriptedImporter:
     allowsAlphaSplitting: 0
     androidETC2FallbackOverride: 0
   generatePhysicsShape: 0
-  secondarySpriteTextures:
-  - name: _MaskTex
-    texture: {fileID: -8328923581568760697, guid: 0450e661ae0414f6dacde50f550b145b, type: 3}
+  secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 640, y: 128}
   previousTextureSize: {x: 1024, y: 128}

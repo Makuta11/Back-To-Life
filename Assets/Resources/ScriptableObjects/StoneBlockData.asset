@@ -13,8 +13,12 @@ MonoBehaviour:
   m_Name: StoneBlockData
   m_EditorClassIdentifier: 
   blockName: Stone Block
-  blockTile: {fileID: 11400000, guid: 20c720383de204a7bb0586348a8ecdd7, type: 2}
-  miningTime: 1
+  blockTile: {fileID: 11400000, guid: 099ea490cadc440efb416ec3aa01ae07, type: 2}
+  miningStageSprites:
+  - {fileID: 8262193859627507360, guid: b7c04867ac2ac4377a6c13127352cf8c, type: 3}
+  - {fileID: 5763762474701050683, guid: b7c04867ac2ac4377a6c13127352cf8c, type: 3}
+  - {fileID: 5092316396679069932, guid: b7c04867ac2ac4377a6c13127352cf8c, type: 3}
+  miningTime: 0.8
   dropPrefab: {fileID: 6131221070387171347, guid: 96f1176246f9d4613a4eac853157636a, type: 3}
   minDropAmount: 2
   maxDropAmount: 2

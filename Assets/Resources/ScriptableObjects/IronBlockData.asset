@@ -13,7 +13,11 @@ MonoBehaviour:
   m_Name: IronBlockData
   m_EditorClassIdentifier: 
   blockName: Iron Block
-  blockTile: {fileID: 11400000, guid: d20f1f80c1f2944eeb54e09cf11e565d, type: 2}
+  blockTile: {fileID: 11400000, guid: 5ff69089a952d4a84a6da8b18552c2ba, type: 2}
+  miningStageSprites:
+  - {fileID: -652270593105730363, guid: b7c04867ac2ac4377a6c13127352cf8c, type: 3}
+  - {fileID: -2720319764934894031, guid: b7c04867ac2ac4377a6c13127352cf8c, type: 3}
+  - {fileID: 8502670140423464595, guid: b7c04867ac2ac4377a6c13127352cf8c, type: 3}
   miningTime: 1
   dropPrefab: {fileID: 6131221070387171347, guid: 3331ca0624ab8479a96c35f7abd6d519, type: 3}
   minDropAmount: 2

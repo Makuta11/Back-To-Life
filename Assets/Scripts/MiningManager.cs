@@ -37,6 +37,13 @@ public class MiningManager : MonoBehaviour
     private Vector3 lastPlayerPosition;
     private float cacheInvalidateDistance = 0.1f; // Invalidate cache if player moves this much
 
+    // Mining animation cache
+    private Dictionary<Sprite, Tile> spriteTileCache = new Dictionary<Sprite, Tile>();
+
+    // Mining state tracking for guaranteed reset
+    private Vector3Int currentMiningTile = new Vector3Int(int.MinValue, int.MinValue, int.MinValue);
+    private TileBase originalMiningTile = null;
+
     // Initializes the tile/block lookup for mining
     private void Start()
     {
@@ -303,7 +310,7 @@ public class MiningManager : MonoBehaviour
                 if (IsBlockMineable(currentHoveredTile))
                 {
                     if (miningCoroutine != null)
-                        StopCoroutine(miningCoroutine);
+                        StopMining(); // Properly stop any existing mining
                     miningCoroutine = StartCoroutine(MineBlock(currentHoveredTile, blockData));
                 }
             }
@@ -313,30 +320,84 @@ public class MiningManager : MonoBehaviour
         {
             if (miningCoroutine != null)
             {
-                StopCoroutine(miningCoroutine);
-                miningCoroutine = null;
+                StopMining(); // Properly stop mining with reset
             }
         }
     }
 
-    // Coroutine: tracks mining time and checks conditions
+    // Stops mining and ensures tile is reset to original state
+    private void StopMining()
+    {
+        if (miningCoroutine != null)
+        {
+            StopCoroutine(miningCoroutine);
+            miningCoroutine = null;
+        }
+        
+        // Reset tile to original if we were mining
+        ResetMiningTile();
+    }
+
+    // Resets the currently mining tile back to its original state
+    private void ResetMiningTile()
+    {
+        if (currentMiningTile.x != int.MinValue && originalMiningTile != null)
+        {
+            mineableTilemap.SetTile(currentMiningTile, originalMiningTile);
+            mineableTilemap.SetTileFlags(currentMiningTile, TileFlags.LockTransform | TileFlags.LockColor);
+        }
+        
+        // Clear mining state
+        currentMiningTile = new Vector3Int(int.MinValue, int.MinValue, int.MinValue);
+        originalMiningTile = null;
+    }
+
+    // Coroutine: tracks mining time and checks conditions with mining animation
     private IEnumerator MineBlock(Vector3Int tilePos, BlockData blockData)
     {
         float elapsedTime = 0f;
+        float lastStageProgress = -1f;
+        
+        // Store original tile for reset tracking
+        currentMiningTile = tilePos;
+        originalMiningTile = mineableTilemap.GetTile(tilePos);
+        
         while (elapsedTime < blockData.miningTime)
         {
             elapsedTime += Time.deltaTime;
             float progress = elapsedTime / blockData.miningTime;
             
+            // Update sprite if we've crossed a stage threshold (only if blockData supports it)
+            float currentStageProgress = Mathf.Floor(progress * 4f); // 4 stages: 0, 1, 2, 3
+            
+            if (currentStageProgress != lastStageProgress && blockData.miningStageSprites != null)
+            {
+                Sprite stageSprite = blockData.GetMiningStageSprite(progress);
+                if (stageSprite != null)
+                {
+                    // Create or get cached tile with the new sprite
+                    Tile tempTile = GetOrCreateTile(stageSprite);
+                    mineableTilemap.SetTile(tilePos, tempTile);
+                }
+                lastStageProgress = currentStageProgress;
+            }
+            
             // Check all conditions including mineability
             if (!IsBlockMineable(tilePos) || currentHoveredTile != tilePos || 
                 !Mouse.current.leftButton.isPressed)
             {
+                // Mining cancelled - reset will be handled by ResetMiningTile()
+                ResetMiningTile();
                 miningCoroutine = null;
                 yield break;
             }
             yield return null;
         }
+        
+        // Mining completed successfully - clear mining state before completing
+        currentMiningTile = new Vector3Int(int.MinValue, int.MinValue, int.MinValue);
+        originalMiningTile = null;
+        
         SpawnDrops(tilePos, blockData);
         mineableTilemap.SetTile(tilePos, null);
         RemoveHighlight();
@@ -347,6 +408,26 @@ public class MiningManager : MonoBehaviour
         
         // Clear the coroutine reference so we can start mining a new block
         miningCoroutine = null;
+    }
+
+    // Helper method to create or get cached tile for sprite
+    private Tile GetOrCreateTile(Sprite sprite)
+    {
+        // Check if we already have a tile for this sprite
+        if (spriteTileCache.TryGetValue(sprite, out Tile cachedTile))
+        {
+            return cachedTile;
+        }
+        
+        // Create a new tile with the sprite
+        Tile newTile = ScriptableObject.CreateInstance<Tile>();
+        newTile.sprite = sprite;
+        newTile.colliderType = Tile.ColliderType.Grid; // Keep same collider behavior
+        
+        // Cache it for future use
+        spriteTileCache[sprite] = newTile;
+        
+        return newTile;
     }
 
     // Spawns block drops at the correct position
