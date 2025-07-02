@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c66980bb8dcd4491b5a83f7c3d8f1c7, type: 3}
   m_Name: FogTile
   m_EditorClassIdentifier: 
-  fogSprite: {fileID: -146512672002829507, guid: eba4b9e53fba04422a2db635a27b3757, type: 3}
+  fogSprite: {fileID: 5753666966098697415, guid: b7c04867ac2ac4377a6c13127352cf8c, type: 3}
   tintColor: {r: 0, g: 0, b: 0, a: 1}
