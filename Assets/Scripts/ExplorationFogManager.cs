@@ -18,6 +18,14 @@ public class ExplorationFogManager : MonoBehaviour
     [Tooltip("Offset from player transform position for fog discovery center")]
     public Vector3 playerCenterOffset = new Vector3(0, 0, 0);
 
+    [Header("Chamber Reveal Settings")]
+    [Tooltip("Enable chamber-based reveal for caves")]
+    public bool enableChamberReveal = true;
+    [Tooltip("Maximum chamber size to prevent performance issues")]
+    public int maxChamberSize = 500;
+    [Tooltip("Delay between revealing each tile in chamber for visual effect")]
+    public float chamberRevealDelay = 0.005f;
+
     [Header("Visual Settings")]
     public Color fogColor = Color.black;  // Fog color (can adjust alpha)
     public float updateInterval = 0.1f;   // How often to check for new discoveries
@@ -25,6 +33,10 @@ public class ExplorationFogManager : MonoBehaviour
     // Discovered tiles tracking
     private Dictionary<Vector3Int, bool> discoveredTiles = new Dictionary<Vector3Int, bool>();
     private Dictionary<Vector3Int, Coroutine> fadeCoroutines = new Dictionary<Vector3Int, Coroutine>();
+    
+    // Chamber reveal tracking
+    private HashSet<Vector3Int> currentlyRevealingChamber = new HashSet<Vector3Int>();
+    private Coroutine chamberRevealCoroutine;
     
     // Performance optimization
     private Vector3 lastPlayerPosition;
@@ -60,7 +72,6 @@ public class ExplorationFogManager : MonoBehaviour
             lastPlayerPosition = discoveryCenter;
             RevealArea(discoveryCenter);
         }
-
     }
     
     private void Update()
@@ -85,26 +96,138 @@ public class ExplorationFogManager : MonoBehaviour
         }
     }
     
-    // Initialize fog over all existing tiles
-    private void InitializeFog()
+    // Public method to cover entire map with fog (called by map generator)
+    public void CoverMapWithFog(int mapSize)
     {
-        if (mineableTilemap == null || fogTile == null) return;
+        if (fogTile == null) 
+        {
+            Debug.LogError("Fog tile not assigned!");
+            return;
+        }
         
-        // Get bounds of the mineable tilemap
-        BoundsInt bounds = mineableTilemap.cellBounds;
+        // Clear any existing fog first
+        ClearAllFog();
         
-        // Place fog tiles everywhere there's a mineable tile
+        // Cover entire map area with fog
+        int halfSize = mapSize / 2;
+        List<Vector3Int> positions = new List<Vector3Int>();
+        List<TileBase> tiles = new List<TileBase>();
+        
+        for (int x = -halfSize; x < halfSize; x++)
+        {
+            for (int y = -halfSize; y < halfSize; y++)
+            {
+                positions.Add(new Vector3Int(x, y, 0));
+                tiles.Add(fogTile);
+            }
+        }
+        
+        // Batch set all fog tiles for performance
+        fogTilemap.SetTiles(positions.ToArray(), tiles.ToArray());
+        
+        // Set fog properties
+        foreach (var pos in positions)
+        {
+            fogTilemap.SetTileFlags(pos, TileFlags.None);
+            fogTilemap.SetColor(pos, fogColor);
+        }
+        
+        Debug.Log($"Covered {mapSize}x{mapSize} map with fog ({positions.Count} tiles)");
+        
+        // Clear discovered tiles tracking since this is a new map
+        discoveredTiles.Clear();
+        discoveredChunks.Clear();
+        currentlyRevealingChamber.Clear();
+        
+        // Re-reveal the spawn area if player exists
+        if (playerTransform != null)
+        {
+            RevealArea(playerTransform.position + playerCenterOffset);
+        }
+    }
+
+    // Public method to cover a specific chunk with fog (for procedural generation)
+    public void CoverChunkWithFog(Vector2Int chunkCoord, int chunkSize)
+    {
+        if (fogTile == null) return;
+        
+        Vector3Int chunkWorldPos = new Vector3Int(chunkCoord.x * chunkSize, chunkCoord.y * chunkSize, 0);
+        List<Vector3Int> positions = new List<Vector3Int>();
+        List<TileBase> tiles = new List<TileBase>();
+        
+        for (int x = 0; x < chunkSize; x++)
+        {
+            for (int y = 0; y < chunkSize; y++)
+            {
+                Vector3Int tilePos = chunkWorldPos + new Vector3Int(x, y, 0);
+                
+                // Only add fog if tile isn't already discovered
+                if (!IsTileDiscovered(tilePos))
+                {
+                    positions.Add(tilePos);
+                    tiles.Add(fogTile);
+                }
+            }
+        }
+        
+        // Batch set fog tiles
+        if (positions.Count > 0)
+        {
+            fogTilemap.SetTiles(positions.ToArray(), tiles.ToArray());
+            
+            foreach (var pos in positions)
+            {
+                fogTilemap.SetTileFlags(pos, TileFlags.None);
+                fogTilemap.SetColor(pos, fogColor);
+            }
+        }
+        
+        Debug.Log($"Added fog to chunk ({chunkCoord.x}, {chunkCoord.y}) - {positions.Count} tiles");
+    }
+
+    // Helper method to clear all fog
+    private void ClearAllFog()
+    {
+        fogTilemap.CompressBounds();
+        BoundsInt bounds = fogTilemap.cellBounds;
+        List<Vector3Int> positions = new List<Vector3Int>();
+        
         for (int x = bounds.xMin; x < bounds.xMax; x++)
         {
             for (int y = bounds.yMin; y < bounds.yMax; y++)
             {
                 Vector3Int pos = new Vector3Int(x, y, 0);
-                if (mineableTilemap.HasTile(pos))
+                if (fogTilemap.HasTile(pos))
                 {
-                    fogTilemap.SetTile(pos, fogTile);
-                    fogTilemap.SetTileFlags(pos, TileFlags.None);
-                    fogTilemap.SetColor(pos, fogColor);
+                    positions.Add(pos);
                 }
+            }
+        }
+        
+        if (positions.Count > 0)
+        {
+            TileBase[] empty = new TileBase[positions.Count];
+            fogTilemap.SetTiles(positions.ToArray(), empty);
+        }
+    }
+
+    // Initialize fog over the current world
+    private void InitializeFog()
+    {
+        // Try to determine map size from the mineable tilemap bounds
+        if (mineableTilemap != null)
+        {
+            BoundsInt bounds = mineableTilemap.cellBounds;
+            int mapSize = Mathf.Max(bounds.size.x, bounds.size.y);
+            
+            if (mapSize > 0)
+            {
+                CoverMapWithFog(mapSize);
+            }
+            else
+            {
+                // Default to 64x64 if no tiles exist yet
+                CoverMapWithFog(64);
             }
         }
     }
@@ -131,10 +254,97 @@ public class ExplorationFogManager : MonoBehaviour
                 
                 if (distance <= discoveryRadius)
                 {
-                    DiscoverTile(tilePos);
+                    // Check if this is a cave tile and chamber reveal is enabled
+                    if (enableChamberReveal && !mineableTilemap.HasTile(tilePos) && 
+                        fogTilemap.HasTile(tilePos) && !IsTileDiscovered(tilePos)) 
+                    {
+                        // This is an undiscovered cave tile - reveal the entire chamber
+                        RevealChamber(tilePos);
+                    }
+                    else
+                    {
+                        // Normal tile-by-tile reveal for solid blocks or if chamber reveal is disabled
+                        DiscoverTile(tilePos);
+                    }
                 }
             }
         }
+    }
+    
+    // Reveal an entire cave chamber starting from a tile
+    private void RevealChamber(Vector3Int startTile)
+    {
+        // Don't start a new chamber reveal if one is in progress
+        if (currentlyRevealingChamber.Count > 0) return;
+        
+        // Find all connected cave tiles using flood fill
+        HashSet<Vector3Int> chamberTiles = new HashSet<Vector3Int>();
+        Queue<Vector3Int> toCheck = new Queue<Vector3Int>();
+        toCheck.Enqueue(startTile);
+        chamberTiles.Add(startTile);
+        
+        while (toCheck.Count > 0 && chamberTiles.Count < maxChamberSize)
+        {
+            Vector3Int current = toCheck.Dequeue();
+            
+            // Check all 4 adjacent tiles
+            Vector3Int[] neighbors = {
+                current + Vector3Int.up,
+                current + Vector3Int.down,
+                current + Vector3Int.left,
+                current + Vector3Int.right
+            };
+            
+            foreach (var neighbor in neighbors)
+            {
+                // Check if this is a cave tile we haven't checked yet
+                if (!chamberTiles.Contains(neighbor) && 
+                    !mineableTilemap.HasTile(neighbor) && 
+                    fogTilemap.HasTile(neighbor) &&
+                    !IsTileDiscovered(neighbor))
+                {
+                    chamberTiles.Add(neighbor);
+                    toCheck.Enqueue(neighbor);
+                }
+            }
+        }
+        
+        // Start revealing the chamber
+        if (chamberTiles.Count > 0)
+        {
+            currentlyRevealingChamber = chamberTiles;
+            if (chamberRevealCoroutine != null)
+                StopCoroutine(chamberRevealCoroutine);
+            chamberRevealCoroutine = StartCoroutine(RevealChamberAnimation(chamberTiles));
+            
+            Debug.Log($"Revealing chamber with {chamberTiles.Count} tiles");
+        }
+    }
+    
+    // Animate the chamber reveal for visual effect
+    private IEnumerator RevealChamberAnimation(HashSet<Vector3Int> chamberTiles)
+    {
+        // Convert to list and sort by distance from center for ripple effect
+        List<Vector3Int> sortedTiles = new List<Vector3Int>(chamberTiles);
+        Vector3Int center = sortedTiles[0]; // First tile is where we started
+        
+        sortedTiles.Sort((a, b) => 
+        {
+            float distA = Vector3Int.Distance(a, center);
+            float distB = Vector3Int.Distance(b, center);
+            return distA.CompareTo(distB);
+        });
+        
+        // Reveal tiles in order with slight delay
+        foreach (var tile in sortedTiles)
+        {
+            DiscoverTile(tile);
+            if (chamberRevealDelay > 0)
+                yield return new WaitForSeconds(chamberRevealDelay);
+        }
+        
+        currentlyRevealingChamber.Clear();
+        chamberRevealCoroutine = null;
     }
     
     // Discover a single tile
@@ -218,6 +428,16 @@ public class ExplorationFogManager : MonoBehaviour
         discoveryRadius = oldRadius;
     }
     
+    // Force reveal a chamber (useful for special events or items)
+    public void ForceRevealChamber(Vector3 worldPosition)
+    {
+        Vector3Int tilePos = mineableTilemap.WorldToCell(worldPosition);
+        if (!mineableTilemap.HasTile(tilePos)) // Only works on empty tiles
+        {
+            RevealChamber(tilePos);
+        }
+    }
+    
     // Save/Load methods for future implementation
     public DiscoveryData GetSaveData()
     {
@@ -263,15 +483,12 @@ public class ExplorationFogManager : MonoBehaviour
             {
                 Vector3Int tilePos = chunkWorldPos + new Vector3Int(x, y, 0);
                 
-                if (generatedTilemap.HasTile(tilePos))
+                // Only add fog if tile isn't already discovered
+                if (!IsTileDiscovered(tilePos))
                 {
-                    // Only add fog if tile isn't already discovered
-                    if (!IsTileDiscovered(tilePos))
-                    {
-                        fogTilemap.SetTile(tilePos, fogTile);
-                        fogTilemap.SetTileFlags(tilePos, TileFlags.None);
-                        fogTilemap.SetColor(tilePos, fogColor);
-                    }
+                    fogTilemap.SetTile(tilePos, fogTile);
+                    fogTilemap.SetTileFlags(tilePos, TileFlags.None);
+                    fogTilemap.SetColor(tilePos, fogColor);
                 }
             }
         }

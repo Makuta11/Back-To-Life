@@ -24,6 +24,7 @@ public class FastMapGenerator : MonoBehaviour
 {
     [Header("Map Settings")]
     [SerializeField] private int mapSize = 64;
+    [SerializeField] private int chunkSize = 32;
     [SerializeField] private int spawnClearRadius = 3;
     
     [Header("Cave Generation")]
@@ -117,6 +118,17 @@ public class FastMapGenerator : MonoBehaviour
         // Move player to spawn
         if (playerTransform != null)
             playerTransform.position = new Vector3(0, 0, playerTransform.position.z);
+        
+        // Apply fog of war to the new map
+        ExplorationFogManager fogManager = FindObjectOfType<ExplorationFogManager>();
+        if (fogManager != null)
+        {
+            fogManager.CoverMapWithFog(mapSize);
+        }
+        else
+        {
+            Debug.LogWarning("ExplorationFogManager not found - fog of war not applied!");
+        }
         
         timer.Stop();
         Debug.Log($"Map generated in {timer.ElapsedMilliseconds}ms - {positions.Count} tiles placed");
@@ -318,9 +330,13 @@ public class FastMapGeneratorEditor : Editor
         EditorGUILayout.Space();
         
         // Get the mapSize value using serialization
+        serializedObject.Update();
         SerializedProperty mapSizeProp = serializedObject.FindProperty("mapSize");
-        int size = mapSizeProp.intValue;
-        EditorGUILayout.HelpBox($"Map will be {size}x{size} = {size * size:N0} tiles", MessageType.Info);
+        if (mapSizeProp != null)
+        {
+            int size = mapSizeProp.intValue;
+            EditorGUILayout.HelpBox($"Map will be {size}x{size} = {size * size:N0} tiles", MessageType.Info);
+        }
     }
 }
 #endif
